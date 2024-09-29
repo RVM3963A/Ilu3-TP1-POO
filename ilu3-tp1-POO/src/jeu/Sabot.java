@@ -59,7 +59,19 @@ public class Sabot implements Iterable<Carte> {
 				}
 				nbCartes-=1;
 			}
+			
+			
+				
+				
 		};
+		
+	}
+	
+	public Carte piocher() {
+		Iterator<Carte> piocher = iterator();
+		Carte carte = piocher.next();
+		piocher.remove();
+		return carte;
 	}
 	
 	
