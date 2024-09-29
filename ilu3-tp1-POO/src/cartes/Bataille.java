@@ -6,7 +6,7 @@ public abstract class Bataille extends Problem {
 		super(type);
 	}
 
-	}
+	
 	
 	
 

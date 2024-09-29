@@ -22,9 +22,16 @@ public class JeuDeCartes {
 			new Configuration(new Borne(25), 10),
 			new Configuration(new Borne(25), 10)
 			};
+	
+	
+	
 	public String affichageJeuDeCartes() {
-		for(int i =0; )
-		
+		StringBuilder jeu = new StringBuilder();
+		for(int i = 0; i<19;i++ ) {
+			jeu.append(typesDeCartes[i].getNbExemplaires() + " "+ typesDeCartes[i].getCarte().toString()+ "\n");
+			
+		}
+		return jeu.toString();
 		
 	}
 	
