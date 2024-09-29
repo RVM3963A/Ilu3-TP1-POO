@@ -8,7 +8,7 @@ import cartes.*;
 
 public class Sabot implements Iterable<Carte> {
 	Carte[] cartes;
-	int nbCartes =110;
+	int nbCartes=0;
 	int indiceIterateur = 0; //implemente à cause d'Iterable
 	boolean nextEffectue = false; //implemente à cause d'Iterable
 	

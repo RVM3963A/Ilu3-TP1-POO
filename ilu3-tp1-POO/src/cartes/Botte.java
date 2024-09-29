@@ -2,7 +2,7 @@ package cartes;
 
 public class Botte extends Problem {
 
-	protected Botte(Type type) {
+	public Botte(Type type) {
 		super(type);
 	}
 	
