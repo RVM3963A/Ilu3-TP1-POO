@@ -24,6 +24,19 @@ public class JeuDeCartes {
 			};
 	
 	
+	public Carte[] ajouterCarte() {
+		Carte[] cartes = new Carte[106];
+		int cmpt = 0;
+		for(Configuration conf : typesDeCartes) {
+			for (int indicecarte = 0; indicecarte< conf.getNbExemplaires();indicecarte++) {
+				cartes[cmpt] = conf.getCarte();
+				cmpt++;
+			}
+			
+		}
+		return cartes;
+	}
+	
 	
 	public String affichageJeuDeCartes() {
 		StringBuilder jeu = new StringBuilder();
