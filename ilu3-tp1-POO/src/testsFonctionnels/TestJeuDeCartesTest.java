@@ -19,6 +19,7 @@ private JeuDeCartes jeu;
 	void test() {
 		System.out.println(jeu.affichageJeuDeCartes());
 		
+		System.out.println("test checkcount : " + jeu.checkCount());
 		
 	}
 }

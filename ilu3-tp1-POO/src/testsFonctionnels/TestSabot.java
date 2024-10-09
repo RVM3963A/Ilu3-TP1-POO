@@ -31,13 +31,14 @@ class TestSabot {
 	
 	@BeforeEach
 	void setup() {
-		sabot = new Sabot(jeu.ajouterCarte());
+		sabot = new Sabot(jeu.donnerCarte());
 	}
 		
 
 	@Test
 	void test() {
 		sabot.affichageSabot();
+		//sabot.ajouterCarte(new Parade(Type.ACCIDENT));
 		for(int i=0; i<106; i++) System.out.println("je pioche : "+ sabot.piocher());
 		sabot.affichageSabot();
 

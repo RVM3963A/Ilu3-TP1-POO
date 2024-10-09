@@ -12,4 +12,14 @@ public class Borne extends Carte {
 		StringBuilder borne = new StringBuilder("Borne de " +km + "km");
 		return borne.toString() ;
 	}
+	
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof Borne) {
+			Borne borne = (Borne) object;
+			return km == borne.km;
+			
+		}
+		return false;
+	}
 }
