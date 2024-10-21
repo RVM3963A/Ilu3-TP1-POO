@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Random;
 
 import cartes.Carte;
@@ -41,9 +42,47 @@ public class GestionCartes  {
 		
 		return true;
 		
-		
 	}
 	
+	public static<E> List<E> rassembler(List<E> list) {
+		List<E> listeConsecutif = new  ArrayList<>();
+		int i=0;
+		while (i<list.size()) {
+			int elemfrequence = Collections.frequency(list, list.get(i));
+			for (int j = 0; j<elemfrequence;i++) {
+			listeConsecutif.add(list.get(i));
+			}
+			i += elemfrequence;
+			
+			
+		}
+		return listeConsecutif;
+	}
+	
+	
+	public static<E> boolean verifierRassemblement(List<E> list) {
+		ListIterator<E> iterateurBalayage = list.listIterator();
+
+		
+		//Condition
+		for(E elem : list) {
+		
+		E previous = elem ;
+		if(!elem.equals(previous)) {
+			ListIterator<E> iterateurBalayage2 = list.listIterator();
+		}
+		
+		elem = iterateurBalayage.next();
+		}
+		
+		
+		
+		return true;
+		
+		
+		
+		
+	}
 	
 	
 
