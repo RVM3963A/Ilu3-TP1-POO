@@ -9,7 +9,7 @@ public class JeuDeCartes {
 			new Configuration(new Parade(Type.ACCIDENT), 6), new Configuration(new Attaque(Type.FEU), 5),
 			new Configuration(new DebutLimite(), 4), new Configuration(new Attaque(Type.ESSENCE), 3),
 			new Configuration(new Attaque(Type.CREVAISON), 3), new Configuration(new Attaque(Type.ACCIDENT), 3),
-			new Configuration(new Botte(Type.ACCIDENT), 1), new Configuration(new Botte(Type.ESSENCE), 1),
+			new Configuration(new Botte(Type.FEU), 1), new Configuration(new Botte(Type.ESSENCE), 1),
 			new Configuration(new Botte(Type.CREVAISON), 1), new Configuration(new Botte(Type.ACCIDENT), 1) };
 
 	private final int NBMAXCARTE = 106;
@@ -30,8 +30,8 @@ public class JeuDeCartes {
 
 	public String affichageJeuDeCartes() {
 		StringBuilder jeu = new StringBuilder();
-		for (int i = 0; i < typesDeCartes.length; i++) {
-			jeu.append(typesDeCartes[i].getNbExemplaires() + " " + typesDeCartes[i].getCarte().toString() + "\n");
+		for (Configuration conf : typesDeCartes) {
+			jeu.append(conf.getNbExemplaires() + " " + conf.getCarte().toString() + "\n");
 
 		}
 		return jeu.toString();
@@ -78,7 +78,7 @@ public class JeuDeCartes {
 		Carte[] cartes = donnerCarte();
 		for(Configuration config : typesDeCartes) {
 			if(count(config.carte, cartes) != config.getNbExemplaires()) {
-				System.out.println(config.getCarte().toString() + config.getNbExemplaires() + count(config.carte, cartes));
+				System.out.println(config.getCarte().toString() + " "+ config.getNbExemplaires() +" " + count(config.carte, cartes));
 				diffTableau = false;
 			}
 		}
