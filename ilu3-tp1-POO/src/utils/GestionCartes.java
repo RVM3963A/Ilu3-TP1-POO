@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Random;
 
+import org.junit.jupiter.params.shadow.com.univocity.parsers.common.IterableResult;
+
 import cartes.Carte;
 import java.util.Random;
 
@@ -52,9 +54,10 @@ public class GestionCartes  {
 		int i=0;
 		while (i<list.size()) {
 			int elemfrequence = Collections.frequency(list, list.get(i));
-
-			for (int i2 = 0; i2<elemfrequence;i2++) { 
-			listeConsecutif.add(list.get(i));
+			if(!listeConsecutif.contains(list.get(i))) {
+				for (int i2 = 0; i2<elemfrequence;i2++) { 
+					listeConsecutif.add(list.get(i));
+				}
 			}
 			i += elemfrequence;
 			
@@ -70,8 +73,7 @@ public class GestionCartes  {
 		int i = 0;
 		//System.out.println("ici");
 		ListIterator<E> iterateurBalayage = list.listIterator();
-		iterateurBalayage.next();
-		
+		previous = iterateurBalayage.next();
 		
 		
 		//System.out.println("pre for \n");
@@ -79,11 +81,14 @@ public class GestionCartes  {
 			//System.out.println("dans le while");
 			elem = iterateurBalayage.next();
 			i++;
-			if(!(elem.equals(previous))) {
-				ListIterator<E> iterateurBalayage2 = list.listIterator(i);
-				while(iterateurBalayage2.hasNext()) {
+			
+			
+			if(!elem.equals(previous)) {
+				int i2=0;
+				for(ListIterator<E> iterateurBalayage2 = list.listIterator(i); iterateurBalayage2.hasNext(); ) {
+					i2++;
 					E elem2 = iterateurBalayage2.next();
-					if(elem2.equals(elem)) {
+					if(elem2.equals(previous)) {
 						return false;
 					}
 					
@@ -92,9 +97,8 @@ public class GestionCartes  {
 				
 			}
 			
-			previous = iterateurBalayage.previous() ;
+			previous = elem ;
 		}
-		
 		
 		return true;
 		
