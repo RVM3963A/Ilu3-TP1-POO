@@ -16,7 +16,7 @@ public class GestionCartes  {
 
 	
 	
-	public static<E> E extraire(List<E> liste){
+	public static <E> E extraire(List<E> liste){
 		
 		int ielem = random.nextInt(liste.size());
 		return  liste.remove(ielem);
@@ -24,16 +24,18 @@ public class GestionCartes  {
 		
 	}
 		
-	public static<E> List<E> melanger(List<E> listeCartes) {
-		List<E> listemelanger = new ArrayList<>();
-		listemelanger = listeCartes;
+	public static <E> List<E> melanger(List<E> listeCartes) { // un <E> car c'est le type générique de List<E> melanger()
+		List<E> listemelanger = new ArrayList<>(listeCartes); //en paramètre pour créer une nouvelle liste, et pas faire = sinon c'est un pointeur
 		Collections.shuffle(listemelanger);
 		listeCartes.clear();
+		System.out.println("listemelanger : "+ listemelanger);
 		return listemelanger;
 		
 	}
 	
-	public static<E> boolean verifierMelange(List<E> l1, List<E> l2) {
+	
+	
+	public static <E> boolean verifierMelange(List<E> l1, List<E> l2) {
 		for(int i =0;i<l1.size();i++) {
 			if(!(Collections.frequency(l1, l1.get(i))== Collections.frequency(l2, l1.get(i)))) {
 				return false;
@@ -44,12 +46,14 @@ public class GestionCartes  {
 		
 	}
 	
-	public static<E> List<E> rassembler(List<E> list) {
+	
+	public static <E> List<E> rassembler(List<E> list) { 
 		List<E> listeConsecutif = new  ArrayList<>();
 		int i=0;
 		while (i<list.size()) {
 			int elemfrequence = Collections.frequency(list, list.get(i));
-			for (int j = 0; j<elemfrequence;i++) {
+
+			for (int i2 = 0; i2<elemfrequence;i2++) { 
 			listeConsecutif.add(list.get(i));
 			}
 			i += elemfrequence;
@@ -60,21 +64,36 @@ public class GestionCartes  {
 	}
 	
 	
-	public static<E> boolean verifierRassemblement(List<E> list) {
+	public static <E> boolean verifierRassemblement(List<E> list) { //générique car <E>
+		E elem = null;
+		E previous = null;
+		int i = 0;
+		//System.out.println("ici");
 		ListIterator<E> iterateurBalayage = list.listIterator();
-
+		iterateurBalayage.next();
 		
-		//Condition
-		for(E elem : list) {
 		
-		E previous = elem ;
-		if(!elem.equals(previous)) {
-			ListIterator<E> iterateurBalayage2 = list.listIterator();
+		
+		//System.out.println("pre for \n");
+		while(iterateurBalayage.hasNext()) {
+			//System.out.println("dans le while");
+			elem = iterateurBalayage.next();
+			i++;
+			if(!(elem.equals(previous))) {
+				ListIterator<E> iterateurBalayage2 = list.listIterator(i);
+				while(iterateurBalayage2.hasNext()) {
+					E elem2 = iterateurBalayage2.next();
+					if(elem2.equals(elem)) {
+						return false;
+					}
+					
+				}
+					
+				
+			}
+			
+			previous = iterateurBalayage.previous() ;
 		}
-		
-		elem = iterateurBalayage.next();
-		}
-		
 		
 		
 		return true;
